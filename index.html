@@ -1,0 +1,49 @@
+<!Doctype html>
+<html lang="en" ng-app="firstTodoApp">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>To Do List</title>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="main.css">
+  <!--Include jquery-->
+  <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script type="text/javascript" src="https://code.angularjs.org/1.4.3/angular.min.js"></script>
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script src="index.js"></script>
+</head>
+
+<body>
+  <div ng-controller="TodoAppController">
+    <div class="container todoApp">
+      <span class="list-group-item title">Today's Tasks</span>
+      <ul class="list-group-item">
+        <span>{{remaining()}} of {{Todolist.length}} remaining.</span>
+        <form name="ListForm" class="list-group-item">
+          <input type="text" new="AddNewItem" ng-model="AddNewItem" required/>
+          <!--	<a href="#" class="btn btn-info btn-lg"> -->
+          <button class="btn btn-info" ng-disabled="ListForm.$invalid" ng-click="Addtolist()">
+            <span class="glyphicon glyphicon-plus"></span>
+          </button>
+          <button class="btn btn-danger" ng-click="DeleteCompleted()">
+            <span class="glyphicon glyphicon-remove"></span>
+          </button>
+        </form>
+        <li ng-repeat="Task in Todolist" class="list-group-item">
+          <input type="checkbox" ng-model="Task.done" />
+          <span ng-class="{'complete': Task.done}">{{Task.title}}</span>
+        </li>
+        <!--preview as typing occurs-->
+        <!--   <div class="list-group-item" ng-show="AddNewItem">
+                    <input type="checkbox" disabled="true">
+                    <input type="text" disabled="true" placeholder="{{AddNewItem}}" />
+                </div> -->
+      </ul>
+
+    </div>
+  </div>
+</body>
+
+</html>
